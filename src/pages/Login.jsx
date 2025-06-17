@@ -27,6 +27,7 @@ export default function Login() {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Вход</h2>
+      <div style={{ display: "none" }}>asdasd</div>
       <input
         name="phone_number"
         placeholder="Номер телефона"
