@@ -1,0 +1,36 @@
+.button-div {
+  display: flex;
+  justify-content: center; /* Центр по горизонтали */
+  align-items: center;
+  height: 100px;
+  margin-top: 10rem;
+}
+
+.button-div button {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--green-600);
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-div button:hover {
+  background-color: var(--green-500);
+}
+
+/* Адаптивность для телефонов */
+@media (max-width: 480px) {
+  .button-div {
+    height: 80px; /* чуть меньше высота контейнера */
+  }
+
+  .button-div button {
+    width: 80px;
+    height: 80px;
+    font-size: 1rem; /* чуть меньше текст */
+  }
+}

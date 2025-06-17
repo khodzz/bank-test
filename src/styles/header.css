@@ -1,0 +1,111 @@
+@import url("../styles/variables.css");
+
+.header {
+  padding: 20px 0;
+  background-color: var(--green-600);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green-200);
+  cursor: default;
+  user-select: none;
+}
+
+.header-links {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.header-link {
+  text-decoration: none;
+  color: var(--green-200);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.header-link:hover {
+  color: var(--green-100);
+  text-decoration: underline;
+}
+
+.header-reg {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  color: var(--green-200);
+}
+
+.header-balance,
+.header-phone {
+  margin: 0;
+  font-weight: 600;
+}
+
+.header-link-button {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1.5px solid var(--green-200);
+  border-radius: 5px;
+  color: var(--green-200);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-link-button:hover {
+  background-color: var(--green-200);
+  color: var(--green-600);
+}
+
+/* Мобильная версия */
+@media (max-width: 600px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-links {
+    gap: 15px;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .header-reg {
+    gap: 15px;
+    margin-top: 15px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .header-link,
+  .header-link-button {
+    font-size: 0.9rem;
+  }
+
+  .header-balance,
+  .header-phone {
+    font-size: 0.9rem;
+  }
+}
