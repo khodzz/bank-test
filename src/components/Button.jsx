@@ -9,6 +9,9 @@ const Button = () => {
       await APIUser.post("increase-balance/");
 
       await updateUserFromAPI();
+      setTimeout(() => {
+        location.reload();
+      }, 400);
     } catch (error) {
       console.error("Ошибка при увеличении баланса:", error);
     }

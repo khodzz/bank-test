@@ -11,17 +11,30 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const localUser = getUserFromLocalStorage();
-    if (localUser) {
-      setUser(localUser);
-    } else {
-      fetchAndStoreUser().then(setUser);
-    }
+    const loadUser = async () => {
+      const localUser = getUserFromLocalStorage();
+      if (localUser) {
+        setUser(localUser);
+      } else {
+        const userData = await fetchAndStoreUser();
+        setUser(userData);
+      }
+    };
+    loadUser();
+
+    const handleUserUpdated = () => {
+      setUser(getUserFromLocalStorage());
+    };
+    window.addEventListener("userUpdated", handleUserUpdated);
+    return () => {
+      window.removeEventListener("userUpdated", handleUserUpdated);
+    };
   }, []);
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("transactions");
     setUser(null);
     navigate("/login");
   };
@@ -46,16 +59,11 @@ const Header = () => {
               История транзакций
             </Link>
           </div>
-
           <div className="header-reg">
-            {isAuthenticated ? (
+            {isAuthenticated && user ? (
               <>
-                <p className="header-balance">
-                  Баланс: {user?.balance ?? "Загрузка..."}
-                </p>
-                <p className="header-phone">
-                  Телефон: {user?.phone_number ?? "Загрузка..."}
-                </p>
+                <p className="header-balance">Баланс: {user.balance}</p>
+                <p className="header-phone">Телефон: {user.phone_number}</p>
                 <button onClick={logout} className="header-link-button">
                   Выход
                 </button>

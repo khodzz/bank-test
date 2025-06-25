@@ -27,6 +27,8 @@ export const fetchAndStoreUser = async () => {
     const response = await APIUser.get("balance-info/");
     const user = response.data;
     localStorage.setItem("user", JSON.stringify(user));
+
+    window.dispatchEvent(new Event("userUpdated"));
     return user;
   } catch (error) {
     console.error("Ошибка при загрузке пользователя:", error);
