@@ -42,7 +42,7 @@ const Header = () => {
             <Link className="header-link" to="/send">
               Отправить
             </Link>
-            <Link className="header-link" to="/history">
+            <Link className="header-link" to="/transactions">
               История транзакций
             </Link>
           </div>

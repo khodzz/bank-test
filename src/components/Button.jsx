@@ -6,7 +6,7 @@ import "../styles/button.css";
 const Button = () => {
   const handleClick = async () => {
     try {
-      await APIUser.post("click-button/");
+      await APIUser.post("increase-balance/");
 
       await updateUserFromAPI();
     } catch (error) {

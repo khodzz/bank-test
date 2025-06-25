@@ -5,7 +5,7 @@ export const updateUserFromAPI = async () => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const response = await APIUser.get("balance/");
+    const response = await APIUser.get("balance-info/");
     const user = response.data;
 
     localStorage.setItem("user", JSON.stringify(user));

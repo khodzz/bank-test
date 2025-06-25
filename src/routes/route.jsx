@@ -3,7 +3,7 @@ import App from "../App";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import History from "../pages/History";
+import Transactions from "../pages/Transactions";
 import Send from "../pages/Send";
 
 const router = createBrowserRouter([
@@ -24,8 +24,8 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "history",
-        element: <History />,
+        path: "transactions",
+        element: <Transactions />,
       },
       {
         path: "send",

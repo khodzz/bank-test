@@ -2,7 +2,7 @@ import { APIUser } from "../api";
 
 export const updateUserFromAPI = async () => {
   try {
-    const response = await APIUser.get("balance/");
+    const response = await APIUser.get("balance-info/");
     const user = response.data;
     localStorage.setItem("user", JSON.stringify(user));
     return user;
@@ -24,7 +24,7 @@ export function getUserFromLocalStorage() {
 
 export const fetchAndStoreUser = async () => {
   try {
-    const response = await APIUser.get("balance/");
+    const response = await APIUser.get("balance-info/");
     const user = response.data;
     localStorage.setItem("user", JSON.stringify(user));
     return user;

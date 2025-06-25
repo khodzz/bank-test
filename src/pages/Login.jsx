@@ -2,6 +2,7 @@ import { useState } from "react";
 import { APIUsers } from "../api";
 import { useNavigate } from "react-router-dom";
 import { fetchAndStoreUser } from "../services/userService.js";
+import "../styles/formStyles.css";
 
 export default function Login() {
   const [formData, setFormData] = useState({ phone_number: "", password: "" });

@@ -18,7 +18,7 @@ const UserSearch = () => {
     if (!phone) return;
 
     try {
-      const res = await APIUser.get("search/", {
+      const res = await APIUser.get("search-user/", {
         params: { phone_number: phone },
       });
       setResult(res.data);
@@ -42,18 +42,26 @@ const UserSearch = () => {
 
     try {
       await APIUser.post("send-money/", {
-        phone_number: result.phone_number,
+        phone_number: result[0]?.phone_number,
         amount: Number(amount),
       });
 
-      // Обновляем данные текущего пользователя после отправки
-      const updatedUser = await updateUserFromAPI();
+      const newTransaction = {
+        id: Date.now(),
+        to_user_phone_number: result.phone_number,
+        amount: Number(amount),
+        created_at: result.timestap,
+      };
+
+      const existing = JSON.parse(localStorage.getItem("transactions")) || [];
+      localStorage.setItem(
+        "transactions",
+        JSON.stringify([newTransaction, ...existing])
+      );
+
+      await updateUserFromAPI();
       setSendStatus("Деньги успешно отправлены!");
-
       setAmount("");
-
-      // Можно обновить состояние user (если есть) или вызвать глобальный апдейт
-      // Например, если у тебя есть контекст или состояние в родителе — обновить там
     } catch (err) {
       console.error(err);
       setError("Ошибка при отправке денег.");
@@ -72,14 +80,11 @@ const UserSearch = () => {
         />
         <button type="submit">Поиск</button>
       </form>
-
       {error && <p className="error-message">{error}</p>}
-
       {result && (
         <div className="user-result">
           <h3>Найден пользователь:</h3>
-          <p>Телефон: {result.phone_number}</p>
-          <p>Баланс: {result.balance} </p>
+          <p>Телефон: {result[0].phone_number}</p>
 
           <div className="send-money-container">
             <input
